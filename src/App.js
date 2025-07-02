@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import Whatstapp from './home/Whatstapp';
+import Menu from './home/Menu';
+import Hero from './home/Hero';
+import Colunas from './home/Colunas';
+import Bazar from './home/Bazar';
+import Footer from './home/Footer';
 
 function App() {
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
+    <div className='min-h-screen bg-gray-50'>
+      <header>
+        <Whatstapp />
+
+        <Menu />
       </header>
+
+      <Hero />
+
+      <Colunas />
+
+      <Bazar />
+
+      <Footer />
     </div>
   );
 }
