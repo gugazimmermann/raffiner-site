@@ -68,3 +68,59 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Database Setup
+
+This project uses MySQL with Docker and Prisma ORM.
+
+### Prerequisites
+- Docker and Docker Compose installed
+- Node.js and npm
+
+### Getting Started
+
+1. **Start the MySQL database:**
+   ```bash
+   docker compose up -d
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Generate Prisma client:**
+   ```bash
+   npm run db:generate
+   ```
+
+4. **Push the schema to the database:**
+   ```bash
+   npm run db:push
+   ```
+
+5. **Seed the database (optional):**
+   ```bash
+   npm run db:seed
+   ```
+
+### Database Management
+
+- **View database in Prisma Studio:**
+  ```bash
+  npm run db:studio
+  ```
+
+- **Create a new migration:**
+  ```bash
+  npm run db:migrate
+  ```
+
+- **Stop the database:**
+  ```bash
+  docker-compose down
+  ```
+
+### Environment Variables
+
+Make sure to create a `.env` file with:

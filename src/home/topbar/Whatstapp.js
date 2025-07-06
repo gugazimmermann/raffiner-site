@@ -1,8 +1,8 @@
 import { useCallback, memo } from 'react';
-import useWhatsAppNumber from '../hooks/useWhatsAppNumber';
+import useWhatsappData from '../../hooks/useWhatsappData';
 
 function Whatsapp() {
-  const { number, loading, error } = useWhatsAppNumber();
+  const { number, loading, error } = useWhatsappData();
 
   const handleWhatsAppClick = useCallback(() => {
     if (number) {
