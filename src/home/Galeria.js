@@ -7,17 +7,15 @@ const ITEMS_PER_PAGE = 15;
 
 const ImageSkeleton = () => (
   <div className='animate-pulse'>
-    <div className='bg-gray-200 dark:bg-gray-700 aspect-square rounded-xl'></div>
+    <div className='bg-gray-200 aspect-square rounded-xl'></div>
   </div>
 );
 
 const ImageError = () => (
-  <div className='flex items-center justify-center aspect-square bg-gray-100 dark:bg-gray-800 rounded-xl'>
+  <div className='flex items-center justify-center aspect-square bg-gray-100 rounded-xl'>
     <div className='text-center'>
       <div className='text-4xl mb-2'>📷</div>
-      <p className='text-sm text-gray-500 dark:text-gray-400'>
-        Imagem não disponível
-      </p>
+      <p className='text-sm text-gray-500'>Imagem não disponível</p>
     </div>
   </div>
 );
@@ -39,7 +37,7 @@ const FilterButtons = ({
   if (loading) {
     return (
       <div className='flex items-center justify-center mb-8'>
-        <div className='flex items-center gap-2 p-1 border border-blue-600 dark:border-blue-400 rounded-xl'>
+        <div className='flex items-center gap-2 p-1 border border-blue-600 rounded-xl'>
           <div className='px-4 py-2 md:py-3 md:px-6'>
             <div className='w-4 h-4 border-2 border-blue-600/30 border-t-blue-600 rounded-full animate-spin'></div>
           </div>
@@ -50,7 +48,7 @@ const FilterButtons = ({
 
   return (
     <div className='flex items-center justify-center mb-8'>
-      <div className='flex flex-wrap items-center gap-2 p-1 border border-blue-600 dark:border-blue-400 rounded-xl'>
+      <div className='flex flex-wrap items-center gap-2 p-1 border border-blue-600 rounded-xl'>
         <button
           className={`
             px-4 py-2 text-sm font-medium transition-all duration-300 
@@ -59,14 +57,14 @@ const FilterButtons = ({
             ${
               activeFilter === null
                 ? 'text-white bg-blue-600 shadow-lg'
-                : 'text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white dark:hover:text-white'
+                : 'text-blue-600 hover:bg-blue-600 hover:text-white'
             }
           `}
           onClick={() => handleFilterClick(null)}
           aria-pressed={activeFilter === null}
         >
           <span>Todos</span>
-          <span className='text-xs bg-white/20 dark:bg-black/20 px-2 py-1 rounded-full'>
+          <span className='text-xs bg-white/20 px-2 py-1 rounded-full'>
             {itemCounts.total || 0}
           </span>
         </button>
@@ -81,14 +79,14 @@ const FilterButtons = ({
               ${
                 activeFilter === filter.id
                   ? 'text-white bg-blue-600 shadow-lg'
-                  : 'text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white dark:hover:text-white'
+                  : 'text-blue-600 hover:bg-blue-600 hover:text-white'
               }
             `}
             onClick={() => handleFilterClick(filter.id)}
             aria-pressed={activeFilter === filter.id}
           >
             <span>{filter.label}</span>
-            <span className='text-xs bg-white/20 dark:bg-black/20 px-2 py-1 rounded-full'>
+            <span className='text-xs bg-white/20 px-2 py-1 rounded-full'>
               {itemCounts[filter.id] || 0}
             </span>
           </button>
@@ -235,7 +233,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             ${
               currentPage === 1
                 ? 'text-gray-400 cursor-not-allowed'
-                : 'text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20'
+                : 'text-blue-600 hover:bg-blue-50'
             }
           `}
           aria-label='Página anterior'
@@ -259,7 +257,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                     ${
                       currentPage === page
                         ? 'text-white bg-blue-600 shadow-lg'
-                        : 'text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20'
+                        : 'text-blue-600 hover:bg-blue-50'
                     }
                   `}
                   aria-label={`Página ${page}`}
@@ -281,7 +279,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             ${
               currentPage === totalPages
                 ? 'text-gray-400 cursor-not-allowed'
-                : 'text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20'
+                : 'text-blue-600 hover:bg-blue-50'
             }
           `}
           aria-label='Próxima página'
@@ -516,13 +514,13 @@ const Galeria = () => {
 
   if (isLoading) {
     return (
-      <section className='bg-white dark:bg-gray-900 min-h-screen'>
+      <section className='bg-white min-h-screen'>
         <div className='container px-6 py-10 mx-auto'>
           <div className='text-center mb-8'>
-            <h1 className='text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4'>
+            <h1 className='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>
               Galeria de Fotos
             </h1>
-            <p className='text-gray-600 dark:text-gray-400 max-w-2xl mx-auto'>
+            <p className='text-gray-600 max-w-2xl mx-auto'>
               Explore nossa coleção de momentos especiais capturados com carinho
               e profissionalismo
             </p>
@@ -531,9 +529,7 @@ const Galeria = () => {
           <div className='flex items-center justify-center mt-16'>
             <div className='flex items-center gap-3'>
               <div className='w-8 h-8 border-2 border-blue-600/30 border-t-blue-600 rounded-full animate-spin'></div>
-              <span className='text-gray-600 dark:text-gray-400'>
-                Carregando galeria...
-              </span>
+              <span className='text-gray-600'>Carregando galeria...</span>
             </div>
           </div>
         </div>
@@ -543,13 +539,13 @@ const Galeria = () => {
 
   if (hasError) {
     return (
-      <section className='bg-white dark:bg-gray-900 min-h-screen'>
+      <section className='bg-white min-h-screen'>
         <div className='container px-6 py-10 mx-auto'>
           <div className='text-center mb-8'>
-            <h1 className='text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4'>
+            <h1 className='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>
               Galeria de Fotos
             </h1>
-            <p className='text-gray-600 dark:text-gray-400 max-w-2xl mx-auto'>
+            <p className='text-gray-600 max-w-2xl mx-auto'>
               Explore nossa coleção de momentos especiais capturados com carinho
               e profissionalismo
             </p>
@@ -557,10 +553,10 @@ const Galeria = () => {
 
           <div className='text-center mt-16'>
             <div className='text-6xl mb-4'>⚠️</div>
-            <p className='text-red-500 dark:text-red-400 text-lg mb-2'>
+            <p className='text-red-500 text-lg mb-2'>
               Erro ao carregar a galeria
             </p>
-            <p className='text-gray-400 dark:text-gray-500 text-sm'>
+            <p className='text-gray-400 text-sm'>
               {filtersError || itemsError}
             </p>
           </div>
@@ -570,13 +566,13 @@ const Galeria = () => {
   }
 
   return (
-    <section className='bg-white dark:bg-gray-900 min-h-screen'>
+    <section className='bg-white min-h-screen'>
       <div className='container px-6 py-10 mx-auto'>
         <div className='text-center mb-8'>
-          <h1 className='text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4'>
+          <h1 className='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>
             Galeria de Fotos
           </h1>
-          <p className='text-gray-600 dark:text-gray-400 max-w-2xl mx-auto'>
+          <p className='text-gray-600 max-w-2xl mx-auto'>
             Explore nossa coleção de momentos especiais capturados com carinho e
             profissionalismo
           </p>
@@ -593,7 +589,7 @@ const Galeria = () => {
         {itemCount > 0 && (
           <div className='mt-8 xl:mt-16'>
             <div className='text-center mb-6'>
-              <p className='text-sm text-gray-600 dark:text-gray-400'>
+              <p className='text-sm text-gray-600'>
                 Mostrando {showingCount} de {itemCount}{' '}
                 {itemCount === 1 ? 'imagem' : 'imagens'}
                 {activeFilter &&
@@ -623,10 +619,10 @@ const Galeria = () => {
         {itemCount === 0 && (
           <div className='text-center mt-16'>
             <div className='text-6xl mb-4'>📷</div>
-            <p className='text-gray-500 dark:text-gray-400 text-lg mb-2'>
+            <p className='text-gray-500 text-lg mb-2'>
               Nenhuma imagem encontrada para esta categoria.
             </p>
-            <p className='text-gray-400 dark:text-gray-500 text-sm'>
+            <p className='text-gray-400 text-sm'>
               Tente selecionar outra categoria ou verificar os filtros
               aplicados.
             </p>

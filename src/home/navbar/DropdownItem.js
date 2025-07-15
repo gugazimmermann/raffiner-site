@@ -25,8 +25,8 @@ function DropdownItem({ title, href, onClick }) {
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       className='
-          block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600 
-          focus:bg-blue-50 focus:text-blue-600 focus:outline-none 
+          block px-4 py-2 text-gray-800 hover:bg-fuchsia-50 hover:text-fuchsia-600 
+          focus:bg-fuchsia-50 focus:text-fuchsia-600 focus:outline-none 
           transition-colors text-sm font-medium
         '
       role='menuitem'

@@ -9,6 +9,8 @@ const LoadingSkeleton = ({
   showTitle = true,
   showDescription = true,
   showButtons = false,
+  buttonHeight = 'h-16',
+  buttonWidth = 'w-full',
 }) => {
   const renderCardSkeleton = () => (
     <div
@@ -39,6 +41,24 @@ const LoadingSkeleton = ({
       <div className='h-8 md:h-12 lg:h-16 bg-gray-400 rounded mb-3 max-w-2xl mx-auto'></div>
       <div className='h-4 md:h-6 bg-gray-400 rounded mb-6 max-w-xl mx-auto'></div>
       <div className='h-10 bg-gray-400 rounded w-32 mx-auto'></div>
+    </div>
+  );
+
+  const renderButtonSkeleton = () => (
+    <div className={`animate-pulse ${className}`}>
+      <div
+        className={`${buttonHeight} ${buttonWidth} bg-gray-300 rounded-lg flex items-center justify-center`}
+      >
+        <div className='flex items-center gap-3 px-4 py-2'>
+          {/* Icon skeleton */}
+          <div className='w-6 h-6 bg-gray-400 rounded-full'></div>
+          {/* Text content skeleton */}
+          <div className='flex flex-col gap-2'>
+            <div className='h-4 bg-gray-400 rounded w-24'></div>
+            <div className='h-3 bg-gray-400 rounded w-20'></div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 
@@ -78,6 +98,8 @@ const LoadingSkeleton = ({
       return renderTextSkeleton();
     case 'grid':
       return renderGridSkeleton();
+    case 'button':
+      return renderButtonSkeleton();
     case 'card':
     default:
       return count === 1 ? renderCardSkeleton() : renderGridSkeleton();
@@ -85,7 +107,7 @@ const LoadingSkeleton = ({
 };
 
 LoadingSkeleton.propTypes = {
-  type: PropTypes.oneOf(['card', 'text', 'grid']),
+  type: PropTypes.oneOf(['card', 'text', 'grid', 'button']),
   count: PropTypes.number,
   className: PropTypes.string,
   height: PropTypes.string,
@@ -93,6 +115,8 @@ LoadingSkeleton.propTypes = {
   showTitle: PropTypes.bool,
   showDescription: PropTypes.bool,
   showButtons: PropTypes.bool,
+  buttonHeight: PropTypes.string,
+  buttonWidth: PropTypes.string,
 };
 
 export default LoadingSkeleton;

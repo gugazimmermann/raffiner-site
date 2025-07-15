@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import NavItem from './NavItem';
 import DropdownNavItem from './DropdownNavItem';
 import DropdownItem from './DropdownItem';
@@ -8,6 +9,7 @@ function Nav() {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const location = useLocation();
 
   const handleDropdownToggle = useCallback(dropdownId => {
     setOpenDropdown(prev => (prev === dropdownId ? null : dropdownId));
@@ -24,6 +26,22 @@ function Nav() {
   const handleNavItemClick = useCallback(() => {
     setIsMobileMenuOpen(false);
   }, []);
+
+  const isActive = useCallback(
+    href => {
+      if (href === '/') {
+        return location.pathname === '/';
+      }
+      return (
+        location.pathname === href || location.pathname.startsWith(`${href}/`)
+      );
+    },
+    [location.pathname]
+  );
+
+  const isProdutosActive = useCallback(() => {
+    return location.pathname.startsWith('/produtos/');
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleClickOutside = event => {
@@ -48,12 +66,13 @@ function Nav() {
       <NavItem
         title='Home'
         href='/'
-        active={true}
+        active={isActive('/')}
         onClick={handleNavItemClick}
       />
       <NavItem
         title='Quem Somos'
         href='/quem-somos'
+        active={isActive('/quem-somos')}
         onClick={handleNavItemClick}
       />
       <div ref={dropdownRef}>
@@ -61,6 +80,7 @@ function Nav() {
           title='Produtos'
           href='produtos'
           isOpen={openDropdown === 'produtos'}
+          active={isProdutosActive()}
           onToggle={() => handleDropdownToggle('produtos')}
         >
           <DropdownItem
@@ -80,7 +100,12 @@ function Nav() {
           />
         </DropdownNavItem>
       </div>
-      <NavItem title='Galeria' href='/galeria' onClick={handleNavItemClick} />
+      <NavItem
+        title='Galeria'
+        href='/galeria'
+        active={isActive('/galeria')}
+        onClick={handleNavItemClick}
+      />
     </>
   );
 

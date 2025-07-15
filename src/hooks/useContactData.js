@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { apiClient } from '../api/apiClient';
+import { publicApiClient } from '../api/publicApiClient';
 
 const useContactData = () => {
   const [contactData, setContactData] = useState(null);
@@ -11,7 +11,7 @@ const useContactData = () => {
       try {
         setLoading(true);
 
-        const { config } = await apiClient.get('/config');
+        const { config } = await publicApiClient.get('/config');
 
         if (config) {
           setContactData(config);

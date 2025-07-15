@@ -9,19 +9,25 @@ export const apiClient = {
 
     const config = {
       headers: {
-        'Content-Type': 'application/json',
         ...(token && { Authorization: `Bearer ${token}` }),
         ...options.headers,
       },
       ...options,
     };
 
+    // Only set Content-Type for JSON data, not for FormData
+    if (!(options.body instanceof FormData)) {
+      config.headers['Content-Type'] = 'application/json';
+    }
+
     try {
       const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
 
       if (response.status === 401) {
         logout();
-        window.location.href = '/admin';
+        if (!window.location.pathname.startsWith('/admin')) {
+          window.location.href = '/admin';
+        }
         return;
       }
 
@@ -43,10 +49,17 @@ export const apiClient = {
   },
 
   post(endpoint, data) {
-    return this.request(endpoint, {
-      method: 'POST',
-      body: JSON.stringify(data),
-    });
+    if (data instanceof FormData) {
+      return this.request(endpoint, {
+        method: 'POST',
+        body: data,
+      });
+    } else {
+      return this.request(endpoint, {
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
+    }
   },
 
   put(endpoint, data) {

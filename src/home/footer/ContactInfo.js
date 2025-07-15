@@ -35,14 +35,21 @@ function ContactInfo() {
     return null;
   }
 
-  const phoneNumber = `(47) ${contactData.phone.toString().replace(/(\d{5})(\d{4})/, '$1-$2')}`;
+  const phoneNumber = contactData.phone
+    ? `(${contactData.phone.toString().slice(0, 2)}) ${contactData.phone.toString().slice(2, 7)}-${contactData.phone.toString().slice(7)}`
+    : '';
+
+  const zipCodeMask = contactData.zipCode
+    ? `${contactData.zipCode.toString().slice(0, 2)}.${contactData.zipCode.toString().slice(2, 5)}-${contactData.zipCode.toString().slice(5)}`
+    : '';
+
   return (
     <div className='text-gray-700 space-y-3'>
       <h3 className='font-semibold text-lg mb-4 text-gray-800'>Contato</h3>
 
       <div className='space-y-3'>
         <a
-          href={`https://maps.google.com/?q=${encodeURIComponent(`${contactData.street}, ${contactData.neighborhood}, ${contactData.city} - ${contactData.state}, ${contactData.zipCode}`)}`}
+          href={`https://maps.google.com/?q=${encodeURIComponent(`${contactData.street}, ${contactData.number}, ${contactData.neighborhood}, ${contactData.city} - ${contactData.state}, ${contactData.zipCode}`)}`}
           target='_blank'
           rel='noopener noreferrer'
           className='flex items-start gap-3 group hover:text-amber-600 transition-colors duration-200'
@@ -67,12 +74,12 @@ function ContactInfo() {
             />
           </svg>
           <address className='not-italic group-hover:underline cursor-pointer'>
-            {contactData.street}
+            {contactData.street}, {contactData.number}
             <br />
             {contactData.neighborhood} / {contactData.city} -{' '}
             {contactData.state}
             <br />
-            CEP: {contactData.zipCode}
+            CEP: {zipCodeMask}
           </address>
         </a>
 

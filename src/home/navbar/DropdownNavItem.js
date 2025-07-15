@@ -55,8 +55,8 @@ function DropdownNavItem({
         onKeyDown={handleKeyDown}
         className={`
             flex items-center gap-1 px-3 py-2 text-gray-800 transition-all duration-200 
-            hover:text-blue-600 focus:outline-none rounded-md
-            ${active ? 'font-bold text-blue-600' : 'font-medium'}
+            hover:text-fuchsia-600 focus:outline-none rounded-md
+            ${active ? 'font-bold text-fuchsia-600' : 'font-medium'}
           `}
         aria-expanded={isOpen}
         aria-haspopup='true'

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { apiClient } from '../api/apiClient';
+import { publicApiClient } from '../api/publicApiClient';
 
 const useWhatsappData = () => {
   const [number, setNumber] = useState(null);
@@ -11,7 +11,7 @@ const useWhatsappData = () => {
       try {
         setLoading(true);
 
-        const { config } = await apiClient.get('/config');
+        const { config } = await publicApiClient.get('/config');
 
         if (config.whatsapp) {
           setNumber(config.whatsapp);

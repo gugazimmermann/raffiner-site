@@ -7,9 +7,9 @@ function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className='bg-gradient-to-b from-amber-50 to-amber-100 text-gray-800 py-8 border-t border-amber-200'>
+    <footer className='bg-gradient-to-b from-[#f7f7f7] to-gray-200 text-gray-800 py-4 border-t border-gray-600'>
       <div className='container mx-auto px-4 max-w-7xl'>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-4'>
           <div className='lg:col-span-1'>
             <Logo />
             <p className='text-gray-600 text-sm leading-relaxed'>
@@ -28,11 +28,11 @@ function Footer() {
           </div>
         </div>
 
-        <div className='border-t border-amber-200 pt-6'>
-          <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
+        <div className='border-t border-gray-600 pt-2'>
+          <div className='flex flex-col md:flex-row justify-between items-center'>
             <p className='text-sm text-gray-600 text-center md:text-left'>
-              &copy; {currentYear} Raffiner Soluções para Eventos. Todos os
-              direitos reservados.
+              &copy; {currentYear} Raffiner Soluções e Serviços para Eventos
+              Ltda (30.584.233/0001-40). Todos os direitos reservados.
             </p>
           </div>
         </div>
